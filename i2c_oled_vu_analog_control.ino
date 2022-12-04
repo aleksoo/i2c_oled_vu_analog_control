@@ -42,7 +42,7 @@ void drawBar(int *values){
   display.clearDisplay();
   int counter = 0;
 
-  for(int starting_point = 0; starting_point < SCREEN_HEIGHT; starting_point += SCREEN_HEIGHT / NUMBARS) {
+  for(int starting_point = 0; starting_point < SCREEN_HEIGHT; starting_point += SCREEN_HEIGHT / NUMBARS, ++counter) {
 
     display.drawFastVLine(127, starting_point, SCREEN_HEIGHT / NUMBARS - 1, SSD1306_WHITE); // TOP LINE   
 
@@ -60,15 +60,15 @@ void drawBar(int *values){
 
         // version 2 - rectangles all the way
     // display.fillRect(0, starting_point, values[counter], SCREEN_HEIGHT / NUMBARS - 1, SSD1306_WHITE); // METER BAR
-    // if(values[counter] < RED_ZONE_LIMIT){
+    // if(values[counter] < RED_ZONE_LIMIT){ // BELOW REDZONE
     //   display.fillRect(RED_ZONE_LIMIT, starting_point, 2, SCREEN_HEIGHT / NUMBARS - 1, SSD1306_INVERSE); // Displaying red zone limit line if not achieved
     //   display.fillRect(0, starting_point + 1, values[counter] - 8, SCREEN_HEIGHT / NUMBARS - 3, SSD1306_INVERSE); // Bar below red zone limit is empty
     // }
-    // else{
+    // else{ // ABOVE REDZONE
     //   display.fillRect(0, starting_point + 1, RED_ZONE_LIMIT - 8, SCREEN_HEIGHT / NUMBARS - 3, SSD1306_INVERSE); // Bar above red zone limit is filled with color
     // }
+
     // display.drawFastVLine(0, starting_point, SCREEN_HEIGHT / NUMBARS - 1, SSD1306_WHITE); // BOTTOM LINE
-    // counter++;
   }
 
   display.display();
